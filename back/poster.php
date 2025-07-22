@@ -10,7 +10,9 @@
         <div style="overflow:auto; height:200px;">
             <?php
             $posters=$Poster->all(" order by `rank`");
-            foreach($posters as $poster):
+            foreach($posters as $idx => $poster):
+                $prev=($idx-1>=0) ? $posters[$idx-1]['id'] : $poster['id'];
+                $next=($idx+1<count($posters)) ? $posters[$idx+1]['id'] : $poster['id'];
             ?>
             <div class="ct" style="padding:3px; display:flex; justify-content:space-between; align-items:center; background:white; margin-bottom:3px;">
                 <div style="width:24.8%;">
@@ -20,8 +22,8 @@
                     <input type="text" name="name[]" value="<?=$poster['name'];?>" style="width:90%;">
                 </div>
                 <div style="width:24.8%;">
-                    <button type="button">往上</button>
-                    <button type="button">往下</button>
+                    <button type="button" data-sw="<?=$prev;?>" data-id="<?=$poster['id']?>">往上</button>
+                    <button type="button" data-sw="<?=$next;?>" data-id="<?=$poster['id']?>">往下</button>
                     
                 </div>
                 <div style="width:24.8%;">
