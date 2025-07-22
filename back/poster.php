@@ -52,7 +52,7 @@
 <form action="./api/add_poster.php" method="post" enctype="multipart/form-data">
     <table>
         <tr>
-            <td>預告片海報</td>
+            <td>預告片海報：</td>
             <td><input type="file" name="img" id="img"></td>
             <td>預告片片名：</td>
             <td><input type="text" name="name" id="name"></td>
