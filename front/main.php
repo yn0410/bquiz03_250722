@@ -33,14 +33,34 @@
     align-items: center;
     justify-content: space-around;
   }
+  .poster{
+
+  }
+  .poster img{
+    width: px;
+    height: px;
+  }
 </style>
+<?php
+$posters=$Poster->all(['sh'=>1]," order by `rank`");
+
+?>
 
 <div class="half" style="vertical-align:top;">
   <h1>預告片介紹</h1>
   <div class="rb tab" style="width:95%;">
     <div>
       <div class="lists">
+        <?php
+        foreach($posters as $poster):
+        ?>
+        <div class="poster">
+          <img src="./image/<?=$poster['img'];?>" alt="">
+          <div><?=$poster[''];?></div>
         </div>
+        <?php
+        endforeach;?>
+      </div>
         
         <div class="controls">
           <div class="left"></div>
@@ -50,6 +70,9 @@
       </div>
   </div>
 </div>
+<script>
+  // 還沒寫到這
+</script>
 <div class="half">
   <h1>院線片清單</h1>
   <div class="rb tab" style="width:95%;">
