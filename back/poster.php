@@ -22,8 +22,8 @@
                     <input type="text" name="name[]" value="<?=$poster['name'];?>" style="width:90%;">
                 </div>
                 <div style="width:24.8%;">
-                    <button type="button" data-sw="<?=$prev;?>" data-id="<?=$poster['id']?>">往上</button>
-                    <button type="button" data-sw="<?=$next;?>" data-id="<?=$poster['id']?>">往下</button>
+                    <button type="button" class="sw-btn" data-sw="<?=$prev;?>" data-id="<?=$poster['id']?>">往上</button>
+                    <button type="button" class="sw-btn" data-sw="<?=$next;?>" data-id="<?=$poster['id']?>">往下</button>
                     
                 </div>
                 <div style="width:24.8%;">
@@ -47,7 +47,15 @@
         </div>
     </form>
 </div>
-
+<script>
+$(".sw-btn").on("click", function(){
+    let id = $(this).data("id");
+    let sw = $(this).data("sw");
+    $.post("./api/sw.php",{table:'Poster',id,sw},(res)=>{ //...?? (是ajax)
+        location.reload();
+    })
+})
+</script>
 <hr>
 
 <div style="height: 140px;">
