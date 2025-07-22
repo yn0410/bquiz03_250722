@@ -11,8 +11,8 @@
             <?php
             $posters=$Poster->all(" order by `rank`");
             foreach($posters as $idx => $poster):
-                $prev=($idx-1>=0) ? $posters[$idx-1]['id'] : $poster['id'];
-                $next=($idx+1<count($posters)) ? $posters[$idx+1]['id'] : $poster['id'];
+                $prev=($idx-1>=0) ? $posters[$idx-1]['id'] : $poster['id']; //需理解理解...
+                $next=($idx+1<count($posters)) ? $posters[$idx+1]['id'] : $poster['id']; //需理解理解...
             ?>
             <div class="ct" style="padding:3px; display:flex; justify-content:space-between; align-items:center; background:white; margin-bottom:3px;">
                 <div style="width:24.8%;">
