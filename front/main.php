@@ -58,7 +58,7 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
         <?php
         foreach($posters as $poster):
         ?>
-        <div class="poster">
+        <div class="poster" data-ani="<?=$poster['ani'];?>" data-id="<?=$poster['id'];?>">
           <img src="./image/<?=$poster['img'];?>">
           <div><?=$poster['name'];?></div>
         </div>
@@ -74,9 +74,22 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
       </div>
   </div>
 </div>
+
 <script>
-  $(".poster").eq(0).show();
+  let rank = 0; //順序?
+  $(".poster").eq(rank).show();
+
+  let slider = setInterval(()=>{ //每2秒 換一個"預告片"顯示
+    rank++;
+    if(rank>$(".poster").length-1){
+      rank=0;
+    }
+    $(".poster").hide();
+    $(".poster").eq(rank).show();
+  },2000);
+
 </script>
+
 <div class="half">
   <h1>院線片清單</h1>
   <div class="rb tab" style="width:95%;">
