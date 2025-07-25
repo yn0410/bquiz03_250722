@@ -2,14 +2,14 @@
   .lists {
     width: 210px;
     height: 240px;
-    background: rgba(0, 255, 0, 0.5);
     margin: 0 auto;
+    position: relative;
+    overflow: hidden;
   }
 
   .btns {
     width: 320px;
     height: 120px;
-    background: rgba(0, 0, 255, 0.5);
   }
   .left, .right{
     width: 0;
@@ -34,11 +34,15 @@
     justify-content: space-around;
   }
   .poster{
-
+    text-align:center;
+    position:absolute;
+    width:210px;
+    height:240px;
+    display:none;
   }
   .poster img{
-    width: px;
-    height: px;
+    width: 200px;
+    height: 220px;
   }
 </style>
 <?php
@@ -55,8 +59,8 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
         foreach($posters as $poster):
         ?>
         <div class="poster">
-          <img src="./image/<?=$poster['img'];?>" alt="">
-          <div><?=$poster[''];?></div>
+          <img src="./image/<?=$poster['img'];?>">
+          <div><?=$poster['name'];?></div>
         </div>
         <?php
         endforeach;?>
@@ -71,7 +75,7 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
   </div>
 </div>
 <script>
-  // 還沒寫到這
+  $(".poster").eq(0).show();
 </script>
 <div class="half">
   <h1>院線片清單</h1>
