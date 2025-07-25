@@ -107,19 +107,36 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
 
   let slider = setInterval(()=>{ //每2秒 換一個"預告片"顯示
     animater();
-    /* rank++;
-    if(rank>$(".poster").length-1){
-      rank=0;
-    }
-    $(".poster").hide();
-    $(".poster").eq(rank).show(); */
   },2000);
 
-  function animater(){
+  $(".btns").hover(
+    function(){ //滑鼠移進來的動作
+      clearInterval(slider);
+    },
+    function(){ //滑鼠移出去的動作
+      slider = setInterval(()=>{ //每2秒 換一個"預告片"顯示
+        animater();
+      },2000);
+    }
+  );
+
+  $(".poster-btn").on("click", function(){
+    let idx = $(this).index();
+    // console.log('idx', idx);
+    animater(idx);
+    
+  });
+
+  function animater(r){
     let now=$(".poster:visible"); //現在正在顯示的那個"預告片"
-    rank++;
-    if(rank>$(".poster").length-1){
-      rank=0;
+    // 可同時跑有、無變數 的 此function
+    if(r==undefined){
+      rank++;
+      if(rank>$(".poster").length-1){
+        rank=0;
+      }
+    }else{
+      rank=r;
     }
     let next=$(".poster").eq(rank);
     // console.log($(now).data('ani'), $(now).index(), $(now).eq());
