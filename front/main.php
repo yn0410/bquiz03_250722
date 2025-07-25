@@ -80,13 +80,44 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
   $(".poster").eq(rank).show();
 
   let slider = setInterval(()=>{ //每2秒 換一個"預告片"顯示
-    rank++;
+    animater();
+    /* rank++;
     if(rank>$(".poster").length-1){
       rank=0;
     }
     $(".poster").hide();
-    $(".poster").eq(rank).show();
+    $(".poster").eq(rank).show(); */
   },2000);
+
+  function animater(){
+    let now=$(".poster:visible"); //現在正在顯示的那個"預告片"
+    rank++;
+    if(rank>$(".poster").length-1){
+      rank=0;
+    }
+    let next=$(".poster").eq(rank);
+    // console.log($(now).data('ani'), $(now).index(), $(now).eq());
+    let ani = $(now).data('ani');
+    console.log('ani', ani);
+    
+
+    switch(ani){
+      case 1:
+        // 淡入淡出
+        $(now).fadeOut(1000);
+        $(next).fadeIn(1000);
+        break;
+      case 2:
+        $(now).fadeOut(1000);
+        $(next).fadeIn(1000);
+        break;
+      case 3:
+        $(now).fadeOut(1000);
+        $(next).fadeIn(1000);
+        break;
+      
+    }
+  }
 
 </script>
 
