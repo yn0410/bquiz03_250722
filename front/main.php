@@ -53,6 +53,7 @@
     display: inline-block;
     flex-shrink: 0;
     font-size: 12px;
+    position: relative;
   }
 
   .poster-btn img{
@@ -123,7 +124,7 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
     let next=$(".poster").eq(rank);
     // console.log($(now).data('ani'), $(now).index(), $(now).eq());
     let ani = $(now).data('ani');
-    console.log('ani', ani);
+    // console.log('ani', ani);
     
 
     switch(ani){
@@ -143,6 +144,28 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
       
     }
   }
+
+  // 首頁 預告片介紹 的 下方按鈕的水平移動功能
+  let p = 0; //記錄 點按鈕 幾下了?
+  $(".left, .right").on("click", function(){
+    let arrow = $(this).attr('class');
+    // console.log(arrow);
+    switch(arrow){
+      case 'left':
+        if(p>0){
+          p--;
+        }
+        break;
+      case 'right':
+        if(p < $(".poster-btn").length-4){
+          p++;
+        }
+        break;
+    }
+
+    $(".poster-btn").animate({right:p*80}, 500);
+    
+  });
 
 </script>
 
