@@ -10,6 +10,8 @@
   .btns {
     width: 320px;
     height: 120px;
+    overflow: hidden;
+    display: flex;
   }
   .left, .right{
     width: 0;
@@ -44,6 +46,19 @@
     width: 200px;
     height: 220px;
   }
+
+  .poster-btn{
+    width: 80px;
+    height: 100px;
+    display: inline-block;
+    flex-shrink: 0;
+    font-size: 12px;
+  }
+
+  .poster-btn img{
+    width: 70px;
+    height: 90px;
+  }
 </style>
 <?php
 $posters=$Poster->all(['sh'=>1]," order by `rank`");
@@ -68,7 +83,17 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
         
         <div class="controls">
           <div class="left"></div>
-          <div class="btns"></div>
+          <div class="btns">
+            <?php
+            foreach($posters as $key => $poster):
+              ?>
+            <div class="poster-btn ct" data-ani="<?=$poster['ani'];?>" data-id="<?=$poster['id'];?>">
+              <img src="./image/<?=$poster['img'];?>">
+              <div><?=$poster['name'];?></div>
+            </div>
+            <?php
+            endforeach;?>
+          </div>
           <div class="right"></div>
         </div>
       </div>
@@ -108,12 +133,12 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
         $(next).fadeIn(1000);
         break;
       case 2:
-        $(now).fadeOut(1000);
-        $(next).fadeIn(1000);
+        $(now).hide(1000);
+        $(next).show(1000);
         break;
       case 3:
-        $(now).fadeOut(1000);
-        $(next).fadeIn(1000);
+        $(now).slideUp(1000);
+        $(next).slideDown(1000);
         break;
       
     }
