@@ -148,7 +148,7 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
   // 首頁 預告片介紹 的 下方按鈕的水平移動功能
   let p = 0; //記錄 點按鈕 幾下了?
   $(".left, .right").on("click", function(){
-    let arrow = $(this).attr('class');
+    let arrow = $(this).attr('class'); //左 或 右 鍵被點選
     // console.log(arrow);
     switch(arrow){
       case 'left':
@@ -157,13 +157,13 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
         }
         break;
       case 'right':
-        if(p < $(".poster-btn").length-4){
+        if(p < $(".poster-btn").length-4){ //只能移動 有的資料量-4 的次數(?); 因為顯示4張
           p++;
         }
         break;
     }
 
-    $(".poster-btn").animate({right:p*80}, 500);
+    $(".poster-btn").animate({right:p*80}, 500); //80 單位=px; 500毫秒=0.5秒
     
   });
 
