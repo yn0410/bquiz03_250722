@@ -55,7 +55,7 @@
                 <div>上映時間：<?=$movie['ondate'];?></div>
             </div>
             <div>
-                <button class="show-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh'])?'顯示':'';?></button>
+                <button class="show-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh'])?'顯示':'隱藏';?></button>
                 <button class="sw-btn" data-sw="<?=$prev;?>" data-id="<?=$movie['id']?>">往上</button>
                 <button class="sw-btn" data-sw="<?=$next;?>" data-id="<?=$movie['id']?>">往下</button>
                 <button onclick="location.href='?do=edit_movie&id=<?=$movie['id'];?>'">編輯電影</button>
