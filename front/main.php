@@ -213,7 +213,13 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
       <?php
       $today = date("Y-m-d");//今日
       $ondate = date("Y-m-d", strtotime("-2 days", strtotime($today))); //上映日 在今天的前兩天
-      $movies=$Movie->all(['sh'=>1]," and ondate between '$ondate' and '$today' order by `rank`");
+      $total=$Movie->count(['sh'=>1]," and ondate between '$ondate' and '$today'");
+      $div=4;
+      $pages=ceil($total/$div);
+      $now=$_GET['p']??1;
+      $start=($now-1)*$div;
+      
+      $movies=$Movie->all(['sh'=>1]," and ondate between '$ondate' and '$today' order by `rank` limit $start,$div");
       foreach($movies as $movie):
       ?>
         <div class="movie">
@@ -227,8 +233,8 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
             <div>上映日期：<?=$movie['ondate'];?></div>
           </div>
           <div>
-            <button>劇情簡介</button>
-            <button>線上訂票</button>
+            <button onclick="location.href='?do=intro&id=<?=$movie['id']?>'">劇情簡介</button>
+            <button onclick="location.href='?do=order&id=<?=$movie['id']?>'">線上訂票</button>
           </div>
         </div>
       
@@ -237,6 +243,19 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
       ?>
     </div>
 
-    <div class="ct">1 2 3<!-- 頁碼 --></div>
+    <div class="ct"><!-- 頁碼 -->
+      <?php
+      if($now-1>0){
+        echo "<a href='?p=".($now-1)."'> < </a>";
+      }
+      for($i=1; $i<=$pages; $i++){
+        $size=($i==$now)?'24px':'16px';
+        echo "<a href='?p=$i' style='font-size:$size;'>$i</a>";
+      }
+      if($now+1<=$pages){
+        echo "<a href='?p=".($now+1)."'> > </a>";
+      }
+      ?>
+    </div>
   </div>
 </div>
