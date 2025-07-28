@@ -51,6 +51,10 @@
         getDates($(this).val());
     });
 
+    $("#date").on("change", function(){
+        getSessions($("#movie").val(), $(this).val());
+    });
+
     function getMovies(){
         let id = 0;
         if(url.has('id')){
@@ -66,6 +70,13 @@
     function getDates(movieId){//下拉選單 的 "日期"
         $.get("./api/get_dates.php",{movieId}, (dates)=>{
             $("#date").html(dates);
+            getSessions(movieId,$("#date").val());
+        });
+    }
+
+    function getSessions(movieId,date){//下拉選單 的 "場次"
+        $.get("./api/get_sessions.php",{movieId,date}, (sessions)=>{
+            $("#session").html(sessions);
         });
     }
 </script>
