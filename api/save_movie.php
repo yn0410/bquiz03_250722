@@ -13,7 +13,10 @@ if(!empty($_FILES['trailer']['tmp_name'])){
 $_POST['ondate']="{$_POST['year']}-{$_POST['month']}-{$_POST['day']}";
 unset($_POST['year'], $_POST['month'], $_POST['day']);
 
-
+if(!isset($_POST['id'])){ //沒id 是"新增";(有id 是"編輯")
+    $_POST['sh']=1;
+    $_POST['rank']=$Movie->max('rank')+1;
+}
 
 
 
