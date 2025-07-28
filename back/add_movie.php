@@ -16,8 +16,8 @@
                         <td>
                             <select name="level" id="level">
                                 <option value="1">普遍級</option>
-                                <option value="2">保護級</option>
-                                <option value="3">輔導級</option>
+                                <option value="2">輔導級</option>
+                                <option value="3">保護級</option>
                                 <option value="4">限制級</option>
                             </select>
                         </td>
