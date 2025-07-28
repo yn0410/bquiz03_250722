@@ -58,7 +58,7 @@
                 <button class="show-btn" data-id="<?=$movie['id'];?>"><?=($movie['sh'])?'顯示':'';?></button>
                 <button class="sw-btn" data-sw="<?=$prev;?>" data-id="<?=$movie['id']?>">往上</button>
                 <button class="sw-btn" data-sw="<?=$next;?>" data-id="<?=$movie['id']?>">往下</button>
-                <button>編輯電影</button>
+                <button onclick="location.href='?do=edit_movie&id=<?=$movie['id'];?>'">編輯電影</button>
                 <button class="del-btn" data-id="<?=$movie['id'];?>">刪除電影</button>
             </div>
             <div>
@@ -92,7 +92,7 @@
             location.reload();
         })
     });
-    
+
     $(".del-btn").on("click", function(){
         let id = $(this).data("id");
 
