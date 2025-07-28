@@ -47,6 +47,10 @@
     let url = new URLSearchParams(location.search);
     getMovies();
 
+    $("#movie").on("change", function(){
+        getDates($(this).val());
+    });
+
     function getMovies(){
         let id = 0;
         if(url.has('id')){
@@ -54,6 +58,14 @@
         }
         $.get("./api/get_movies.php",{id}, (movies)=>{
             $("#movie").html(movies);
+
+            getDates($("#movie").val());
+        });
+    }
+
+    function getDates(movieId){//下拉選單 的 "日期"
+        $.get("./api/get_dates.php",{movieId}, (dates)=>{
+            $("#date").html(dates);
         });
     }
 </script>
