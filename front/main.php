@@ -185,15 +185,34 @@ $posters=$Poster->all(['sh'=>1]," order by `rank`");
   });
 
 </script>
+<style>
+  .movie-list{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    height: 340px;
+    align-content: space-evenly;
+  }
+  .movie{
+    width: 48%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    min-height: 100px;
+    border-radius: 3px;
+    padding: 3px;
+  }
+</style>
 
 <div class="half">
   <h1>院線片清單</h1>
   <div class="rb tab" style="width:95%;">
-    <table>
-      <tbody>
-        <tr> </tr>
-      </tbody>
-    </table>
-    <div class="ct"> </div>
+    <div class="movie-list">
+      <div class="movie"></div>
+      <div class="movie"></div>
+      <div class="movie"></div>
+      <div class="movie"></div>
+    </div>
+
+    <div class="ct">1 2 3<!-- 頁碼 --></div>
   </div>
 </div>
