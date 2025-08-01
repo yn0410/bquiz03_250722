@@ -11,10 +11,76 @@
         margin: 10px auto;
         padding: 10px 70px;
         box-sizing: border-box;
-}
+    }
+    #seats{
+        display: flex;
+        flex-wrap: wrap;
+        /* 64*5=320; 86*4=344 */
+        width: 320px;
+        height: 344px;
+        margin: 0 auto;
+        padding: 18px;
+    }
+    .seat{
+        width: 64px;
+        height: 86px;
+        box-sizing: border-box;
+        /* background: #ddd; */
+        text-align: center;
+        padding: 2px;
+        position: relative;
+    }
+    .seat input[type="checkbox"]{
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+    }
+    .seat:nth-child(odd){
+        width: 64px;
+        height: 86px;
+        box-sizing: border-box;
+        /* background: #eee; */
+    }
 </style>
 
+
+<!-- for loop
+0 -> 1排1號 =>0/5=0...0
+1 -> 1排2號 =>1/5=0...1
+2 -> 1排3號 =>2/5=0...2
+3 -> 1排4號 =>3/5=0...3
+4 -> 1排5號 =>4/5=0...4
+5 -> 2排1號 =>5/5=1...0
+6 -> 2排2號 =>6/5=1...1
+7 -> 2排3號 =>7/5=1...2
+8 -> 2排4號 =>8/5=1...3
+9 -> 2排5號 =>9/5=1...4
+10 -> 3排1號 =>10/5=1...0
+11 -> 3排2號 =>11/5=1...1
+12 -> 3排3號
+13 -> 3排4號
+14 -> 3排5號
+15 -> 4排1號
+16 -> 4排2號
+17 -> 4排3號
+18 -> 4排4號
+19 -> 4排5號 -->
 <div class="booking-box">
+    <div id="seats">
+        <?php 
+        for($i=0; $i<20; $i++):
+        ?>
+            <div class="seat">
+                <div>
+                    <?=floor($i/5)+1;?>排<?=($i%5)+1;?>號
+                </div>
+                <input type="checkbox" name="seat" value="<?=$i;?>">
+            </div>
+        <?php 
+        endfor;
+        ?>
+    </div>
+
 
 </div>
 
