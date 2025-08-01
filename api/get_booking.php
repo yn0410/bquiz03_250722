@@ -45,7 +45,7 @@
     .booked{ /* 已被訂位了 */
         background: url("./icon/03D03.png") no-repeat center;
     }
-    
+
     .null{ /* 還未被訂位 */
         background: url("./icon/03D02.png") no-repeat center;
     }
@@ -104,3 +104,25 @@
         <button class="btn-order">訂購</button>
     </div>
 </div>
+
+<script>
+    let selectedSeats=[];
+    $(".seat input[type='checkbox']").on("change", function(){
+        // console.log($(this).prop("checked"), $(this).val());
+
+        if($(this).prop("checked")){
+            if(selectedSeats.length < 4){ //點完(checkbox)的當下 是否<4
+                selectedSeats.push($(this).val());
+                // $(this).parent().removeClass("null").addClass("booked"); //圖示對換，有閒再做
+            }else{
+                alert("最多只能選擇四張票");
+                $(this).prop("checked", false); //把多勾選的取消掉
+            }
+        }else{
+            selectedSeats.splice(selectedSeats.indexOf($(this).val()), 1);
+            // $(this).parent().removeClass("booked").addClass("null"); //圖示對換，有閒再做
+        }
+        // console.log(selectedSeats);
+        $("#tickets").text(selectedSeats.length);
+    });
+</script>
