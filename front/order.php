@@ -63,7 +63,10 @@
         getSessions($("#movie").val(), $(this).val());
     });
 
-    //按鈕切換
+    //按鈕切換("線上訂票"與"劃位區"的切換)
+    /* $(".btn-submit, .btn-prev").on("click", function(){
+        $("#orderForm, #booking").toggle();
+    }); */
     $(".btn-submit").on("click", function(){
         $("#orderForm").hide();
         $("#booking").show(); 
@@ -74,7 +77,7 @@
         $("#orderForm").show();
     });
 
-    
+
 
     function getMovies(){
         let id = 0;
