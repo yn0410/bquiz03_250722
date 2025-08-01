@@ -51,6 +51,14 @@
         background: url("./icon/03D02.png") no-repeat center;
     }
 </style>
+<?php
+$orders=$Order->all(['movie'=>$Movie->find($_GET['id'])['name'], 'date'=>$_GET['date'], 'session'=>$_GET['session']]);
+$seats=[];
+foreach($orders as $order){
+    $seats=array_merge($seats, unserialize($order['seats']));
+}
+// dd($seats);
+?>
 
 
 <!-- for loop
@@ -78,13 +86,15 @@
     <div id="seats">
         <?php 
         for($i=0; $i<20; $i++):
-            $booked='null'; //預設都未被訂位
+            $booked=in_array($i,$seats)?'booked':'null'; //判斷是否被訂位
         ?>
             <div class="seat <?=$booked;?>">
                 <div>
                     <?=floor($i/5)+1;?>排<?=($i%5)+1;?>號
                 </div>
+                <?php if($booked=='null'):?>
                 <input type="checkbox" name="seat" value="<?=$i;?>">
+                <?php endif;?>
             </div>
         <?php 
         endfor;
