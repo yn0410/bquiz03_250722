@@ -14,8 +14,11 @@ if($date==date("Y-m-d") && $hr>13){
 
 
 for($i=$start; $i<5 ;$i++){
+    $remaining=20; //假設每場剩餘20個座位, (20-已被訂走的座位數)
     echo "<option value='{$sessStr[$i]}'>";
     echo $sessStr[$i];
+    echo " 剩餘座位 ";
+    echo "$remaining 位";
     echo "</option>";
 }
 
